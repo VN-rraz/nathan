@@ -1,0 +1,251 @@
+/*resete do CSS*/
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*genérico, mexe em tudo que está dentro dele até segunda ordem */
+body {
+    background: #3399ff ;
+    background-size: auto 100vh ;
+    font-family: 'Share Tech Mono', monospace;
+    height: 100vh;
+  }
+  
+  /*@Media serve para deixar o seu site responsivo, ou seja, mudar o tamanho do elemento de acordo com o tamanho da tela*/
+
+  @media (min-width: 400px) {
+    body {
+      font-size: 15px;
+    }
+  }
+
+  @media (min-width: 600px) {
+    body {
+      font-size: 19px;
+    }
+  }
+
+  @media (min-width: 1000px) {
+    body {
+      font-size: 22px;
+    }
+  }
+
+  /*para alinhar vertical e horizontalmente. OBS: display flex deixa tudo em colunas*/
+  header {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /*na maioria dos casos não é interessante criar vetores genéricos, por isso crie uma class no seu HTML e apartir dai você cria um vetor específico usando o comando ".nome"(ponto nome) do vetor. isso facilita a edição de elementos específicos*/
+
+  /*z-index serve para falar do angulo z, como não especifiquei angulo para nenhum outro elemento o número 1 já será maior que todos. isso corrige o bug do translate ficar por cima do menu*/
+  .menu {
+    background-color: white;
+    position: fixed;
+    width: 100vw;
+    top: 0;
+    z-index: 1;
+  }
+  
+  /*aqui vemos o .menu, menu foi uma class criada no HTML, minha class menu está dentro da minha tag nav, para editar um elemento especifico eu dou o comando abaixo. o comando "ponto menu" vai selecionar o menu, depois eu dou "espaço ul" para selecionar especificamente a "ul" do meu menu*/
+  .menu ul {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .menu li {
+    list-style: none;
+  }
+  
+  .menu a {
+    display: block;
+    /*background-color: rgb(119, 239, 255);*/
+    padding: 10px 20px;
+    transition: background-color 1s, color 1s;
+  }
+
+  /*O hover serve para ação de passar o mouse, o active serve para ação do click (ou touch no caso de smartphone).*/
+.menu a:active,
+.menu a:hover {
+  background-color: rgb(228, 65, 65);
+  color: white;
+}
+
+  a {
+    color: rgb(131, 14, 14);
+    text-decoration: none;
+  }
+  
+  /*esse tal de hover serve para dar comando ao mouse*/
+  a:hover {
+    text-decoration: underline;
+    color: rgb(228, 65, 65);
+  }
+
+  
+  .animatitulo {
+    /*estado inicial da animação definido aqui*/
+    transform: scale(0.2) translateY(50vh);
+    opacity: 0;
+
+    animation: linear 2s animacaoTitulos forwards; 
+  }
+
+  /*nesse caso não precisa definir o estado inicial da animação (no caso from pois já foi definido acima)*/
+  /*from e to = estado inicial e estado final. se for usar mais estados na animação use porcentagem ex: 0% (estado inicial) 50% (meio estado) 100% (estado final) */
+  
+  @keyframes animacaoTitulos {
+   from {
+    transform: scale(0.2) translateY(50vh);
+    opacity: 0;
+   }
+    to {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  /*você pode reaproveitar um estilo que já criou, é só colocar o nome do vetor desejado antes do vetor já estilizado e acresentar uma virgula*/
+  .sub-titulo,
+  .titulo {
+    color: whitesmoke;
+    text-align: center;
+    font-family: 'VT323', monospace; 
+    font-size: 3em;
+  }
+  
+  .sub-titulo {
+    font-style: italic; 
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.5em;
+  }
+
+  .sobre,
+  .contato,
+  .portfolio {
+    padding: 2em;
+    min-height: 100vh;
+  }
+
+@media (min-width: 1200px) {
+  .container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1200PX;
+  }
+}
+
+  .sobre h2,
+  .contato h2,
+  .portfolio h2 {
+    font-family: 'Share Tech Mono', monospace;
+    color: whitesmoke;
+    padding-top: 0.3em;
+    padding-bottom: 1em;
+    font-weight: 1.2em;
+  }
+
+  .sobre p {
+    color: white;
+    text-indent: 2em;
+    margin-bottom: 1.5em;
+  }
+  
+  .sobre a {
+    color: rgb(131, 14, 14);
+    text-decoration: underline;
+    transition: background-color 1s, color 1s;
+}
+  .sobre a:active,
+  .sobre a:hover {
+    background-color: rgb(228, 65, 65);
+    color: white;
+    text-decoration: none;
+}
+
+  .sobre .avatar {
+    float: right;
+    margin-left: 2em;
+}
+
+  .sobre .avatar img {
+    clip-path: polygon(100% 0%, 75% 50%, 100% 100%, 25% 100%, 0% 50%, 25% 0%);
+}
+  .contato .grid,
+  .portfolio .grid {
+    display: grid;
+    gap: 2em;
+  }
+
+  @media (min-width: 560px) {
+    .portfolio .grid {
+      grid-template-columns: 240px 240px;
+      align-content: center;
+      height: calc(100vh - 44px - 8em);
+    }
+  }
+
+  @media (min-width: 730px) {
+    .portfolio .grid {
+      grid-template-columns: repeat(2, 295px);
+      justify-content: center;
+      align-content: center;
+      height: calc(100vh - 44px - 8em);
+    }
+  }
+
+  @media (min-width: 1000px) {
+    .portfolio .grid {
+      grid-template-columns: repeat(2, 340px);
+      justify-content: center;
+      align-content: center;
+      height: calc(100vh - 44px - 8em);
+    }
+  }
+
+
+  .portfolio figure {
+    text-align: center;
+  }
+
+  /*falta tornar a img responsiva*/
+  .img-portfolio {
+    height: 180px;
+    width: 220px;
+    object-fit: cover;
+    /*object-position: ; tem valores para mexer na parte interna da imagem*/
+    object-position: ;
+    /*para aredondar bordas altere o número(border-radius: ;)*/
+    border-radius: 10%;
+    transition: transform 500ms;
+  }  
+
+  
+  .img-portfolio:hover {
+    transform: scale(1.2)
+  }
+
+  .portfolio figcaption {
+    color: whitesmoke;
+  }
+
+  .contato .icons{
+    text-align: center;
+  }
+
+  .contato a {
+    color: whitesmoke;
+    font-size: 6em;
+    transition: text-shadow 1s;
+  }
+
+  .contato a:active,
+  .contato a:hover {
+    text-decoration: none;
+    text-shadow: 0 0 10px rgba(255,255,255,.5);
+  }
